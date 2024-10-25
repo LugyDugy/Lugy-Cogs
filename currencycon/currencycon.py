@@ -43,7 +43,7 @@ class currencycon(commands.Cog):
              )
              return
         verted = convert * total
-        await ctx.maybe_send_embed(f"{total} {money1} == {verted:,.2f} {money2}")
+        await print(f"{total} {money1} == {verted:,.2f} {money2}")
 
     async def conversion(
               self,
