@@ -53,7 +53,7 @@ class currencycon(commands.Cog):
          convert = None
          url = f"https://query1.finance.yahoo.com/v8/finance/chart/{money1}{money2}=x"
          async with self.session.get(url) as query:
-            queryinfo = query.json()
+            queryinfo = await query.json()
          data = queryinfo.get("chart", {}).get("result", [])
          convert = data[0].get("meta", {}).get("regularMarketPrice")
          return convert
