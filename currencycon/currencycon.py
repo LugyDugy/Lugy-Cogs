@@ -12,7 +12,7 @@ class currencycon(commands.Cog):
     """
 
     __author__ = ["Lugy"]
-    __version__ = "0.3"
+    __version__ = "1.0"
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -30,7 +30,7 @@ class currencycon(commands.Cog):
         money2 = money2.upper()
 
         if len(money1) != 3:
-            await ctx.maybe_send_embed(
+            await ctx.mresponse.send_message(
                 (
                     f"{money1} is formatted incorrectly"
                 )
@@ -38,7 +38,7 @@ class currencycon(commands.Cog):
             return
         convert = await self.conversion(money1, money2)
         if convert == None:
-             await ctx.maybe_send_embed(
+             await ctx.response.send_message(
                   f"Invalid request, killing self"
              )
              return
