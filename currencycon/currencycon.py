@@ -2,13 +2,22 @@ import discord
 import aiohttp
 
 from redbot.core import commands, app_commands
-
-
+from redbot.core.bot import Red
 
 class currencycon(commands.Cog):
+    """
+    currency converter inspired by TrustyJAID's 
+    conversions cog, tweaked to work with
+    slash commands
+    """
+
+    __author__ = ["Lugy"]
+    __version__ = "0.3"
+
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
+
     @app_commands.command()
     async def currency_convert(
         self,
@@ -43,8 +52,8 @@ class currencycon(commands.Cog):
     ):
          convert = None
          url = f"https://query1.finance.yahoo.com/v8/finance/chart/{money1}{money2}=x"
-         query = self.session.get(url)
-         queryinfo = query.json()
+         async with self.session.get(url) as query:
+            queryinfo = query.json()
          data = queryinfo.get("chart", {}).get("result", [])
          convert = data[0].get("meta", {}).get("regularMarketPrice")
          return convert
