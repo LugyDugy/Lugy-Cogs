@@ -14,7 +14,7 @@ class currencycon(commands.Cog):
     __author__ = ["Lugy"]
     __version__ = "0.3"
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
         self.session = aiohttp.ClientSession()
 
@@ -43,7 +43,7 @@ class currencycon(commands.Cog):
              )
              return
         verted = convert * total
-        await print(f"{total} {money1} == {verted:,.2f} {money2}")
+        await ctx.maybe_send_embed(f"{total} {money1} == {verted:,.2f} {money2}")
 
     async def conversion(
               self,
