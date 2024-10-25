@@ -1,11 +1,14 @@
 import discord
+import aiohttp
 
 from redbot.core import commands, app_commands
+
+
 
 class currencycon(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
+        self.session = aiohttp.ClientSession()
     @app_commands.command()
     async def currency_convert(
         self,
