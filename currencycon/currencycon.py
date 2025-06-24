@@ -18,6 +18,8 @@ class currencycon(commands.Cog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
 
+    
+
     @app_commands.command()
     async def currency_convert(
         self,
@@ -51,8 +53,9 @@ class currencycon(commands.Cog):
               money2: str,
     ):
         try:
+            log = None
             convert = None
-            headers = {"User-Agent": f"Red Lugy-cogs currency conversion on {self.bot.user.name}", 
+            headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", 
                        "Accept": "application/json" 
                       }
             url = f"https://query1.finance.yahoo.com/v8/finance/chart/{money1}{money2}=x"
@@ -62,4 +65,4 @@ class currencycon(commands.Cog):
             convert = data[0].get("meta", {}).get("regularMarketPrice")
         except Exception:
             log.exception(f"Could not complete request")
-         return convert
+        return convert
