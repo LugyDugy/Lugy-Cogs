@@ -12,7 +12,7 @@ class currencycon(commands.Cog):
     """
 
     __author__ = ["Lugy"]
-    __version__ = "1.0"
+    __version__ = "1.1"
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -51,8 +51,9 @@ class currencycon(commands.Cog):
               money2: str,
     ):
          convert = None
+         headers = {"User-Agent": f"Red Trusty-cogs conversions on {self.bot.user.name}"}
          url = f"https://query1.finance.yahoo.com/v8/finance/chart/{money1}{money2}=x"
-         async with self.session.get(url) as query:
+         async with self.session.get(url, headers=headers) as query:
             queryinfo = await query.json()
          data = queryinfo.get("chart", {}).get("result", [])
          convert = data[0].get("meta", {}).get("regularMarketPrice")
