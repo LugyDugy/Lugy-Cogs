@@ -1,0 +1,7 @@
+{
+    "author": ["Lugy"],
+    "install_msg": "simple currency converter",
+    "name": "currencycon",
+    "short": "this breaks often",
+    "description": "it just converts currency using open exchange rate thats it"
+  }
