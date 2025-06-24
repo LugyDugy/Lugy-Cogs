@@ -12,7 +12,7 @@ class currencycon(commands.Cog):
     """
 
     __author__ = ["Lugy"]
-    __version__ = "1.1.1"
+    __version__ = "1.1.2"
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -58,11 +58,10 @@ class currencycon(commands.Cog):
             headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", 
                        "Accept": "application/json" 
                       }
-            url = f"https://query1.finance.yahoo.com/v8/finance/chart/{money1}{money2}=x"
+            url = f"https://open.er-api.com/v6/latest/{money1}"
             async with self.session.get(url, headers=headers) as query:
                 queryinfo = await query.json()
-            data = queryinfo.get("chart", {}).get("result", [])
-            convert = data[0].get("meta", {}).get("regularMarketPrice")
+            convert = queryinfo.get("{money2}")
         except Exception:
             log.exception(f"Could not complete request")
         return convert
